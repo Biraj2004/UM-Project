@@ -69,7 +69,7 @@ UM-Project/
 │   ├── clustering.py                        # Unsupervised route bottleneck clustering (K-Means)
 │   ├── model_engine.py                      # Supervised ML training & serialization (Random Forest)
 │   ├── simulation_engine.py                 # Real-time counterfactual 5-factory simulator
-│   └── optimization_engine.py              # Multi-objective Pareto scoring & policy table
+│   └── optimization_engine.py               # Multi-objective Pareto scoring & policy table
 ├── models/                                  # Serialized trained model pipelines
 │   └── lead_time_model.pkl                  # Trained Random Forest regression pipeline
 ├── notebooks/                               # Step-by-step Jupyter Notebooks
