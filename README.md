@@ -79,11 +79,14 @@ UM-Project/
 │   └── 03_machine_learning_models.ipynb     # Model training, validation, and benchmarking
 ├── app/                                     # Production Streamlit Web Dashboard
 │   └── app.py                               # 5-module interactive dashboard
+├── .streamlit/                              # Streamlit theme & server configuration
+│   └── config.toml                          # Dark theme tokens & production settings
 ├── reports/                                 # Final academic reports & deliverables
 │   ├── PROJECT_REPORT.tex                   # XeLaTeX source code (B/W theme, 18 pages)
 │   ├── PROJECT_REPORT.pdf                   # Compiled PDF report with squircle cover border
 │   ├── RESEARCH_PAPER.md                    # In-depth academic research report
 │   └── EXECUTIVE_SUMMARY.md                 # Executive presentation summary
+├── UM_PROJECT_GUIDE.md                      # Universal Unified Mentor ML internship guide
 ├── UNDERSTAND_PROJECT.md                    # Master technical guide & architectural blueprint
 ├── README.md                                # Top-level repository overview
 ├── LICENSE                                  # MIT License with liability protection
@@ -275,6 +278,7 @@ cd ..
 
 ## Documentation & Report Links
 
+* **[UM_PROJECT_GUIDE.md](file:///c:/Users/biraj/Desktop/UM-Project/UM_PROJECT_GUIDE.md)** — Universal Unified Mentor ML internship blueprint & deployment guide.
 * **[PROJECT_REPORT.pdf](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.pdf)** — Full 18-page compiled XeLaTeX project report.
 * **[PROJECT_REPORT.tex](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.tex)** — XeLaTeX source document.
 * **[RESEARCH_PAPER.md](file:///c:/Users/biraj/Desktop/UM-Project/reports/RESEARCH_PAPER.md)** — Academic research paper.
