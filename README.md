@@ -86,7 +86,7 @@ UM-Project/
 │   ├── PROJECT_REPORT.pdf                   # Compiled PDF report with squircle cover border
 │   ├── RESEARCH_PAPER.md                    # In-depth academic research report
 │   └── EXECUTIVE_SUMMARY.md                 # Executive presentation summary
-├── UM_PROJECT_GUIDE.md                      # Universal Unified Mentor ML internship guide
+├── UM_PROJECT_GENERAL_GUIDE.md              # Universal Unified Mentor ML internship general guide
 ├── UNDERSTAND_PROJECT.md                    # Master technical guide & architectural blueprint
 ├── README.md                                # Top-level repository overview
 ├── LICENSE                                  # MIT License with liability protection
@@ -278,7 +278,7 @@ cd ..
 
 ## Documentation & Report Links
 
-* **[UM_PROJECT_GUIDE.md](file:///c:/Users/biraj/Desktop/UM-Project/UM_PROJECT_GUIDE.md)** — Universal Unified Mentor ML internship blueprint & deployment guide.
+* **[UM_PROJECT_GENERAL_GUIDE.md](file:///c:/Users/biraj/Desktop/UM-Project/UM_PROJECT_GENERAL_GUIDE.md)** — Universal Unified Mentor ML internship general blueprint & deployment guide.
 * **[PROJECT_REPORT.pdf](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.pdf)** — Full 18-page compiled XeLaTeX project report.
 * **[PROJECT_REPORT.tex](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.tex)** — XeLaTeX source document.
 * **[RESEARCH_PAPER.md](file:///c:/Users/biraj/Desktop/UM-Project/reports/RESEARCH_PAPER.md)** — Academic research paper.
