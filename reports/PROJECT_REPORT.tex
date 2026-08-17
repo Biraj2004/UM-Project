@@ -19,7 +19,7 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{tocloft}
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks,linktoc=all]{hyperref}
 
 % -----------------------------------------------------------------------------
 % Fonts Configuration (Biraj's Specs)
@@ -90,6 +90,9 @@
 \titlespacing*{\section}{0pt}{16pt}{10pt}
 \titlespacing*{\subsection}{0pt}{12pt}{6pt}
 \titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
+
+% Enforce every section to start on a brand new page
+\newcommand{\sectionbreak}{\clearpage}
 
 % TOC formatting with CHAPTER prefix
 \renewcommand{\cftsecpresnum}{CHAPTER }
@@ -234,8 +237,6 @@ Empirical evaluation reveals that \textbf{68.8\% of historical shipments (7,011 
   \tableofcontents
   \newpage
   \listoftables
-  \vspace{1cm}
-  \listoffigures
 }
 
 \newpage
@@ -296,7 +297,7 @@ The primary dataset provided for this study contains \textbf{10,194 historical o
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{3.0cm}|L{3.2cm}|L{7.4cm}|}
+    \begin{tabular}{|L{3.0cm}|L{3.4cm}|L{8.0cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Field Name}} & \multicolumn{1}{c|}{\textbf{Data Type}} & \multicolumn{1}{c|}{\textbf{Description \& Role in Analysis}} \\
         \hline
@@ -342,7 +343,7 @@ Nassau Candy operates five primary manufacturing facilities across the United St
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{3.9cm}|C{2.3cm}|C{2.5cm}|L{4.2cm}|}
+    \begin{tabular}{|L{4.0cm}|C{1.8cm}|C{2.3cm}|L{6.2cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Factory Name}} & \multicolumn{1}{c|}{\textbf{Latitude}} & \multicolumn{1}{c|}{\textbf{Longitude}} & \multicolumn{1}{c|}{\textbf{Regional Alignment \& Hub}} \\
         \hline
@@ -368,7 +369,7 @@ Table \ref{tab:product_mapping} details the historical product assignments and t
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{2.4cm}|L{5.4cm}|L{3.2cm}|C{2.0cm}|}
+    \begin{tabular}{|L{2.4cm}|L{6.2cm}|L{3.4cm}|C{2.4cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Division}} & \multicolumn{1}{c|}{\textbf{Product Name}} & \multicolumn{1}{c|}{\textbf{Current Factory}} & \multicolumn{1}{c|}{\textbf{Order Share}} \\
         \hline
@@ -437,7 +438,7 @@ The clustering algorithm divided the 10,194 orders into three well-defined opera
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{3.2cm}|C{2.0cm}|C{2.2cm}|C{1.8cm}|C{2.6cm}|}
+    \begin{tabular}{|L{3.6cm}|C{2.0cm}|C{2.2cm}|C{1.8cm}|C{2.8cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Cluster Profile}} & \multicolumn{1}{c|}{\textbf{Orders}} & \multicolumn{1}{c|}{\textbf{Avg Distance}} & \multicolumn{1}{c|}{\textbf{Avg Cost}} & \multicolumn{1}{c|}{\textbf{Closer Hub Avail.}} \\
         \hline
@@ -459,7 +460,7 @@ The analysis reveals that \textbf{35.9\% of all shipments} fall into Cluster 2 (
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{3.1cm}|L{2.6cm}|C{1.5cm}|C{1.9cm}|C{2.5cm}|}
+    \begin{tabular}{|L{3.5cm}|L{2.5cm}|C{1.8cm}|C{2.2cm}|C{2.6cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Current Factory}} & \multicolumn{1}{c|}{\textbf{State}} & \multicolumn{1}{c|}{\textbf{Orders}} & \multicolumn{1}{c|}{\textbf{Avg Dist.}} & \multicolumn{1}{c|}{\textbf{Miles Wasted}} \\
         \hline
@@ -502,7 +503,7 @@ We evaluated five regression algorithms using an 80/20 train-test split and 5-Fo
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{4.4cm}|C{2.0cm}|C{2.0cm}|C{1.8cm}|C{2.2cm}|}
+    \begin{tabular}{|L{4.6cm}|C{2.1cm}|C{2.1cm}|C{1.8cm}|C{2.2cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Model Architecture}} & \multicolumn{1}{c|}{\textbf{Test MAE}} & \multicolumn{1}{c|}{\textbf{Test RMSE}} & \multicolumn{1}{c|}{\textbf{Test $R^2$}} & \multicolumn{1}{c|}{\textbf{5-Fold CV $R^2$}} \\
         \hline
@@ -563,7 +564,7 @@ Table \ref{tab:top_recommendations} details the highest-impact factory reallocat
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|L{2.8cm}|C{1.6cm}|L{2.1cm}|L{2.1cm}|C{1.6cm}|R{2.2cm}|}
+    \begin{tabular}{|L{3.0cm}|C{1.6cm}|L{2.2cm}|L{2.2cm}|C{1.6cm}|R{2.3cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Product Name}} & \multicolumn{1}{c|}{\textbf{Region}} & \multicolumn{1}{c|}{\textbf{Current}} & \multicolumn{1}{c|}{\textbf{Proposed}} & \multicolumn{1}{c|}{\textbf{$\Delta$ Dist}} & \multicolumn{1}{c|}{\textbf{Miles Saved}} \\
         \hline
