@@ -52,6 +52,7 @@ This project delivers a **Machine Learning and Decision Intelligence Recommendat
 
 ```
 UM-Project/
+├── main.py                                  # Master entry point (runs full pipeline chainwise)
 ├── docs/                                    # Raw data and project instructions
 │   ├── Dataset - Nassau Candy Distributor.csv # Historical transactional dataset (10,194 rows)
 │   ├── PROJECT_INSTRUCTION.md               # Clean Markdown project specifications
@@ -188,29 +189,37 @@ pip install -r requirements.txt
 
 ---
 
-### 3. Run the Machine Learning & Optimization Pipeline (CMD Commands)
+### 3. Run the Entire End-to-End Pipeline (One-Click Entry Point)
 
-Run the pipeline scripts in sequence from the project root directory:
+To execute all 4 stages (data cleaning, route clustering, ML model training, and optimization policy generation) chainwise in sequence:
 
 ```cmd
-:: Step 1: Data Ingestion, Cleaning & Geospatial Distance Calculation
-:: Generates: data\processed\nassau_candy_enriched.csv
-python src\data_pipeline.py
-
-:: Step 2: Unsupervised Route Bottleneck Clustering (K-Means, k=3)
-:: Generates: data\processed\nassau_candy_clustered.csv
-python src\clustering.py
-
-:: Step 3: Supervised Model Benchmarking & Random Forest Training
-:: Generates: data\processed\model_benchmark_results.csv and models\lead_time_model.pkl
-python src\model_engine.py
-
-:: Step 4: Multi-Objective Pareto Optimization & Policy Generation
-:: Generates: data\processed\top_recommendations.csv
-python src\optimization_engine.py
+:: Run all stages sequentially with real-time logging & timing benchmarks:
+python main.py
 ```
 
-*Note: The processed datasets and trained model are already pre-generated and stored in the repository, so you can also launch the web dashboard directly.*
+#### Running Individual Pipeline Stages (Optional):
+You can also run specific stages individually using either CLI flags or direct script calls:
+
+```cmd
+:: Run Step 1 (Data Ingestion & Haversine Distance Engine):
+python main.py --step data
+:: (or: python src\data_pipeline.py)
+
+:: Run Step 2 (Unsupervised K-Means Route Clustering, k=3):
+python main.py --step cluster
+:: (or: python src\clustering.py)
+
+:: Run Step 3 (Supervised Lead Time Regression & Model Benchmarking):
+python main.py --step train
+:: (or: python src\model_engine.py)
+
+:: Run Step 4 (Multi-Objective Pareto Optimization Policy):
+python main.py --step optimize
+:: (or: python src\optimization_engine.py)
+```
+
+*Note: All processed datasets and trained models are already pre-generated and stored in the repository, so you can also launch the web dashboard directly.*
 
 ---
 
