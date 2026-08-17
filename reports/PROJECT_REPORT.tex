@@ -19,8 +19,7 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{tocloft}
-\definecolor{linkpurple}{RGB}{128, 70, 160}
-\usepackage[colorlinks=true, linkcolor=linkpurple, urlcolor=linkpurple, citecolor=linkpurple]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 % -----------------------------------------------------------------------------
 % Fonts Configuration (Biraj's Specs)
@@ -297,8 +296,6 @@ The primary dataset provided for this study contains \textbf{10,194 historical o
 
 \begin{table}[ht]
     \centering
-    \caption{Dataset Fields and Domain Descriptions}
-    \label{tab:data_fields}
     \begin{tabular}{|L{3.0cm}|L{3.2cm}|L{7.4cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Field Name}} & \multicolumn{1}{c|}{\textbf{Data Type}} & \multicolumn{1}{c|}{\textbf{Description \& Role in Analysis}} \\
@@ -334,6 +331,9 @@ The primary dataset provided for this study contains \textbf{10,194 historical o
         \code{Cost} & Float (\$) & Manufacturing and fulfillment cost. \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Dataset Fields and Domain Descriptions}
+    \label{tab:data_fields}
 \end{table}
 
 \subsection{Factory Master Coordinates and Hub Locations}
@@ -342,8 +342,6 @@ Nassau Candy operates five primary manufacturing facilities across the United St
 
 \begin{table}[ht]
     \centering
-    \caption{Factory Master Coordinates and Regional Alignment}
-    \label{tab:factories}
     \begin{tabular}{|L{3.9cm}|C{2.3cm}|C{2.5cm}|L{4.2cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Factory Name}} & \multicolumn{1}{c|}{\textbf{Latitude}} & \multicolumn{1}{c|}{\textbf{Longitude}} & \multicolumn{1}{c|}{\textbf{Regional Alignment \& Hub}} \\
@@ -359,6 +357,9 @@ Nassau Candy operates five primary manufacturing facilities across the United St
         \code{The Other Factory} & 35.117500 & -89.971107 & Memphis, TN (Mid-South / Gulf Hub) \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Factory Master Coordinates and Regional Alignment}
+    \label{tab:factories}
 \end{table}
 
 \subsection{Baseline Product-to-Factory Correlation}
@@ -367,8 +368,6 @@ Table \ref{tab:product_mapping} details the historical product assignments and t
 
 \begin{table}[ht]
     \centering
-    \caption{Baseline Legacy Product-to-Factory Mapping and Order Share}
-    \label{tab:product_mapping}
     \begin{tabular}{|L{2.4cm}|L{5.4cm}|L{3.2cm}|C{2.0cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Division}} & \multicolumn{1}{c|}{\textbf{Product Name}} & \multicolumn{1}{c|}{\textbf{Current Factory}} & \multicolumn{1}{c|}{\textbf{Order Share}} \\
@@ -392,6 +391,9 @@ Table \ref{tab:product_mapping} details the historical product assignments and t
         Sugar & Laffy Taffy, SweeTARTS, etc. & Sugar Shack / Secret & 0.4\% (40) \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Baseline Legacy Product-to-Factory Mapping and Order Share}
+    \label{tab:product_mapping}
 \end{table}
 
 Over \textbf{96.6\% of all order volume} is concentrated in the top five Chocolate items, making chocolate reallocation the primary lever for network optimization.
@@ -435,8 +437,6 @@ The clustering algorithm divided the 10,194 orders into three well-defined opera
 
 \begin{table}[ht]
     \centering
-    \caption{Route Clustering Summary Statistics ($k=3$)}
-    \label{tab:clustering_summary}
     \begin{tabular}{|L{3.2cm}|C{2.0cm}|C{2.2cm}|C{1.8cm}|C{2.6cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Cluster Profile}} & \multicolumn{1}{c|}{\textbf{Orders}} & \multicolumn{1}{c|}{\textbf{Avg Distance}} & \multicolumn{1}{c|}{\textbf{Avg Cost}} & \multicolumn{1}{c|}{\textbf{Closer Hub Avail.}} \\
@@ -448,6 +448,9 @@ The clustering algorithm divided the 10,194 orders into three well-defined opera
         High-Latency Bottleneck & 3,655 (35.9\%) & 1,951.3 miles & \$3.51 & \textbf{100.0\%} \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Route Clustering Summary Statistics ($k=3$)}
+    \label{tab:clustering_summary}
 \end{table}
 
 \subsection{Identification of Severe Bottleneck Routes}
@@ -456,8 +459,6 @@ The analysis reveals that \textbf{35.9\% of all shipments} fall into Cluster 2 (
 
 \begin{table}[ht]
     \centering
-    \caption{Top 5 Most Congested and Suboptimal Shipping Routes}
-    \label{tab:top_bottlenecks}
     \begin{tabular}{|L{3.1cm}|L{2.6cm}|C{1.5cm}|C{1.9cm}|C{2.5cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Current Factory}} & \multicolumn{1}{c|}{\textbf{State}} & \multicolumn{1}{c|}{\textbf{Orders}} & \multicolumn{1}{c|}{\textbf{Avg Dist.}} & \multicolumn{1}{c|}{\textbf{Miles Wasted}} \\
@@ -473,6 +474,9 @@ The analysis reveals that \textbf{35.9\% of all shipments} fall into Cluster 2 (
         Lot's O' Nuts (AZ) & Ohio & 262 & 1,676.5 mi & 331,176 mi \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Top 5 Most Congested and Suboptimal Shipping Routes}
+    \label{tab:top_bottlenecks}
 \end{table}
 
 These five routes alone account for over \textbf{3.45 million miles} of avoidable freight transit.
@@ -498,8 +502,6 @@ We evaluated five regression algorithms using an 80/20 train-test split and 5-Fo
 
 \begin{table}[ht]
     \centering
-    \caption{Predictive Modeling Benchmark Results on Test Dataset}
-    \label{tab:model_benchmark}
     \begin{tabular}{|L{4.4cm}|C{2.0cm}|C{2.0cm}|C{1.8cm}|C{2.2cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Model Architecture}} & \multicolumn{1}{c|}{\textbf{Test MAE}} & \multicolumn{1}{c|}{\textbf{Test RMSE}} & \multicolumn{1}{c|}{\textbf{Test $R^2$}} & \multicolumn{1}{c|}{\textbf{5-Fold CV $R^2$}} \\
@@ -515,6 +517,9 @@ We evaluated five regression algorithms using an 80/20 train-test split and 5-Fo
         Decision Tree Regressor & 216.98 days & 271.45 days & -0.0419 & -0.0599 \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Predictive Modeling Benchmark Results on Test Dataset}
+    \label{tab:model_benchmark}
 \end{table}
 
 \subsection{Model Selection and Serialization}
@@ -558,8 +563,6 @@ Table \ref{tab:top_recommendations} details the highest-impact factory reallocat
 
 \begin{table}[ht]
     \centering
-    \caption{Strategic Factory Reallocation Policy Recommendations}
-    \label{tab:top_recommendations}
     \begin{tabular}{|L{2.8cm}|C{1.6cm}|L{2.1cm}|L{2.1cm}|C{1.6cm}|R{2.2cm}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Product Name}} & \multicolumn{1}{c|}{\textbf{Region}} & \multicolumn{1}{c|}{\textbf{Current}} & \multicolumn{1}{c|}{\textbf{Proposed}} & \multicolumn{1}{c|}{\textbf{$\Delta$ Dist}} & \multicolumn{1}{c|}{\textbf{Miles Saved}} \\
@@ -577,6 +580,9 @@ Table \ref{tab:top_recommendations} details the highest-impact factory reallocat
         Wonka Nutty Crunch & Interior & Lot's (AZ) & The Other (TN) & -84.2\% & 456,528 mi \\
         \hline
     \end{tabular}
+    \vspace{6pt}
+    \caption{Strategic Factory Reallocation Policy Recommendations}
+    \label{tab:top_recommendations}
 \end{table}
 
 \newpage
