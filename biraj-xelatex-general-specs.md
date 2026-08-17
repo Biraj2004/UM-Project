@@ -73,7 +73,6 @@ Deliverable: always both .tex + compiled .pdf
 Link Color: Light / muted purple:
   \definecolor{linkpurple}{RGB}{128, 70, 160}
   \usepackage[colorlinks=true, linkcolor=linkpurple, urlcolor=linkpurple, citecolor=linkpurple]{hyperref}
-All TOC entries, figure/table references, and external web URLs are clickable and formatted in light purple.
 ```
 
 ## Table Rules
