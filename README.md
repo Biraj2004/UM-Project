@@ -161,54 +161,53 @@ The interactive web dashboard (`app/app.py`) provides 5 core modules:
 ## How to Run the Project (Step-by-Step Guide)
 
 ### 1. Prerequisites & System Setup
-* **Python**: Version 3.9, 3.10, or 3.11 installed.
+* **Python**: Version 3.9, 3.10, or 3.11 installed (ensure "Add Python to PATH" is checked during installation).
 * **Git**: Installed for cloning the repository.
-* **Operating System**: Fully compatible with Windows, macOS, and Linux.
+* **Terminal**: Windows Command Prompt (`cmd.exe`), PowerShell, or macOS/Linux Terminal.
 
 ### 2. Environment Setup & Dependency Installation
 
-Open your terminal or command prompt and execute:
+Open Windows Command Prompt (`cmd.exe`) or your platform terminal and run:
 
-```bash
-# Clone the repository
+```cmd
+:: 1. Clone the repository
 git clone https://github.com/Biraj2004/UM-Project.git
 cd UM-Project
 
-# (Optional but Recommended) Create and activate a virtual environment
-# On Windows:
+:: 2. (Optional but Recommended) Create and activate virtual environment in Windows CMD
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate.bat
 
-# On macOS / Linux:
-python3 -m venv venv
-source venv/bin/activate
+:: (For macOS / Linux bash users):
+:: python3 -m venv venv
+:: source venv/bin/activate
 
-# Install all project dependencies
+:: 3. Install all project dependencies
 pip install -r requirements.txt
 ```
 
 ---
 
-### 3. Run the Machine Learning & Optimization Pipeline
+### 3. Run the Machine Learning & Optimization Pipeline (CMD Commands)
 
 Run the pipeline scripts in sequence from the project root directory:
 
-```bash
-# Step 1: Data Ingestion, Cleaning & Geospatial Distance Calculation
-# Generates: data/processed/nassau_candy_enriched.csv
-python src/data_pipeline.py
+```cmd
+:: Step 1: Data Ingestion, Cleaning & Geospatial Distance Calculation
+:: Generates: data\processed\nassau_candy_enriched.csv
+python src\data_pipeline.py
 
-# Step 2: Unsupervised Route Bottleneck Clustering (K-Means, k=3)
-# Generates: data/processed/nassau_candy_clustered.csv
-python src/clustering.py
+:: Step 2: Unsupervised Route Bottleneck Clustering (K-Means, k=3)
+:: Generates: data\processed\nassau_candy_clustered.csv
+python src\clustering.py
 
-# Step 3: Supervised Model Benchmarking & Random Forest Training
-# Generates: data/processed/model_benchmark_results.csv and models/lead_time_model.pkl
-python src/model_engine.py
+:: Step 3: Supervised Model Benchmarking & Random Forest Training
+:: Generates: data\processed\model_benchmark_results.csv and models\lead_time_model.pkl
+python src\model_engine.py
 
-# Step 4: Multi-Objective Pareto Optimization & Policy Generation
-# Generates: data/processed/top_recommendations.csv
-python src/optimization_engine.py
+:: Step 4: Multi-Objective Pareto Optimization & Policy Generation
+:: Generates: data\processed\top_recommendations.csv
+python src\optimization_engine.py
 ```
 
 *Note: The processed datasets and trained model are already pre-generated and stored in the repository, so you can also launch the web dashboard directly.*
@@ -217,10 +216,10 @@ python src/optimization_engine.py
 
 ### 4. Launch the Interactive Streamlit Web Application
 
-To start the interactive decision intelligence dashboard:
+To start the interactive decision intelligence dashboard in Windows CMD:
 
-```bash
-streamlit run app/app.py
+```cmd
+streamlit run app\app.py
 ```
 
 Once executed, Streamlit will start a local web server:
@@ -238,12 +237,12 @@ Open `http://localhost:8501` in your web browser to explore all 5 interactive mo
 
 ### 5. Running the Jupyter Notebooks
 
-If you prefer interactive exploratory data science:
+If you prefer interactive exploratory data science in Windows CMD:
 
-```bash
+```cmd
 jupyter notebook
 ```
-Navigate to the `notebooks/` directory and open:
+Navigate to the `notebooks\` directory and open:
 * `01_data_cleaning_and_eda.ipynb`: Data inspection, date formatting, Haversine geodesic calculation.
 * `02_clustering_and_bottlenecks.ipynb`: Elbow curve evaluation, K-Means clustering, bottleneck corridor profiling.
 * `03_machine_learning_models.ipynb`: Cross-validation, regression model benchmarks, feature importance analysis.
@@ -252,15 +251,16 @@ Navigate to the `notebooks/` directory and open:
 
 ### 6. (Optional) Recompiling the Formal XeLaTeX Project Report
 
-If you have a TeX distribution (e.g., MiKTeX or TeX Live) installed with XeLaTeX and font `TeX Gyre Pagella`:
+To compile the LaTeX report and clean auxiliary files using Windows CMD:
 
-```bash
+```cmd
 cd reports
 xelatex -interaction=nonstopmode PROJECT_REPORT.tex
 xelatex -interaction=nonstopmode PROJECT_REPORT.tex
-python -c "import os, glob; [os.remove(f) for ext in ['*.aux','*.log','*.out','*.toc','*.lot'] for f in glob.glob(ext)]"
+del /q *.aux *.log *.out *.toc *.lot 2>nul
+cd ..
 ```
-*The compiled 18-page PDF is available directly in `reports/PROJECT_REPORT.pdf`.*
+*The compiled 18-page PDF is available directly in `reports\PROJECT_REPORT.pdf`.*
 
 ---
 
