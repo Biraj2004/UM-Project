@@ -20,6 +20,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from PIL import Image
+
 # Add project root to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -31,14 +33,41 @@ from src.model_engine import load_trained_model
 
 
 # -----------------------------------------------------------------------------
-# Streamlit Page Configuration
+# Favicon & Streamlit Page Configuration
 # -----------------------------------------------------------------------------
+favicon_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'assets', 'favicon.png'))
+if os.path.exists(favicon_path):
+    favicon_img = Image.open(favicon_path)
+else:
+    favicon_img = None
+
 st.set_page_config(
     page_title="Nassau Candy - Decision Intelligence Platform",
-    page_icon=None,
+    page_icon=favicon_img,
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# -----------------------------------------------------------------------------
+# OpenGraph Social Metadata & SEO
+# -----------------------------------------------------------------------------
+st.markdown("""
+<head>
+    <title>Nassau Candy - Decision Intelligence Platform</title>
+    <meta name="title" content="Nassau Candy - Decision Intelligence Platform">
+    <meta name="description" content="Enterprise Decision Intelligence, Lead Time ML & 5-Factory Shipping Optimization Platform for Nassau Candy Distributor. Unified Mentor ML Internship Project.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://biraj-candy-ml.streamlit.app/">
+    <meta property="og:title" content="Nassau Candy - Decision Intelligence Platform">
+    <meta property="og:description" content="Enterprise Geospatial Decision Support, Predictive Lead Time ML & 5-Hub Factory Shipping Optimization Platform.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Biraj2004/UM-Project/main/assets/og_preview.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://biraj-candy-ml.streamlit.app/">
+    <meta property="twitter:title" content="Nassau Candy - Decision Intelligence Platform">
+    <meta property="twitter:description" content="Enterprise Geospatial Decision Support, Predictive Lead Time ML & 5-Hub Factory Shipping Optimization Platform.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/Biraj2004/UM-Project/main/assets/og_preview.png">
+</head>
+""", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
 # Design System & Custom Responsive Styling
