@@ -1,0 +1,6 @@
+Model,Test MAE (Days),Test RMSE (Days),Test R2,5-Fold CV R2
+Random Forest Regressor,211.59,262.97,0.0222,0.0127
+Gradient Boosting Regressor,212.8,264.51,0.0107,0.0043
+Ridge Regression,214.54,265.98,-0.0003,0.0002
+Linear Regression (Baseline),214.81,266.49,-0.0042,-0.0008
+Decision Tree,216.98,271.45,-0.0419,-0.0599

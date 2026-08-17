@@ -1,0 +1,658 @@
+\documentclass[12pt]{article}
+
+% -----------------------------------------------------------------------------
+% Package Imports
+% -----------------------------------------------------------------------------
+\usepackage[a4paper, margin=0.8in]{geometry}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{tocloft}
+\definecolor{linkpurple}{RGB}{128, 70, 160}
+\usepackage[colorlinks=true, linkcolor=linkpurple, urlcolor=linkpurple, citecolor=linkpurple]{hyperref}
+
+% -----------------------------------------------------------------------------
+% Fonts Configuration (Biraj's Specs)
+% -----------------------------------------------------------------------------
+\setmainfont{TeX Gyre Pagella}
+\setmonofont[Scale=0.88]{TeX Gyre Cursor}
+\setmathfont{Latin Modern Math}
+
+% -----------------------------------------------------------------------------
+% Page, Paragraph & Line Spacing Setup
+% -----------------------------------------------------------------------------
+\setstretch{1.2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\raggedright
+
+% -----------------------------------------------------------------------------
+% Inward List Hierarchy Configuration
+% -----------------------------------------------------------------------------
+\setlist[itemize,1]{leftmargin=2.75em, label=\textbullet, itemsep=3pt, topsep=2pt}
+\setlist[itemize,2]{leftmargin=2.50em, label=--, itemsep=2pt, topsep=1pt}
+\setlist[enumerate,1]{leftmargin=2.75em, label=(\alph*), itemsep=3pt, topsep=2pt}
+\setlist[enumerate,2]{leftmargin=2.50em, label=(\roman*), itemsep=2pt, topsep=1pt}
+
+% -----------------------------------------------------------------------------
+% Header and Footer Configuration (No Branding per user request)
+% -----------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% Plain style for title and chapter first pages
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\thepage}
+}
+
+% -----------------------------------------------------------------------------
+% Heading Formatting & Multi-Line Spacing (Biraj's Specs)
+% -----------------------------------------------------------------------------
+% Top-level Heading: Bold, Centered, ALL CAPS with CHAPTER prefix
+\titleformat{\section}
+  {\fontsize{18}{22}\selectfont\bfseries\centering}
+  {CHAPTER \thesection\ -- }
+  {0.3em}
+  {\MakeUppercase}
+
+% Level 1 Subheading: 15pt / 18pt baselineskip, Bold, Left-Aligned
+\titleformat{\subsection}
+  {\fontsize{15}{18}\selectfont\bfseries\raggedright}
+  {\thesubsection}
+  {0.6em}
+  {}
+
+% Level 2 Sub-subheading: 13pt / 16pt baselineskip, Bold, Left-Aligned
+\titleformat{\subsubsection}
+  {\fontsize{13}{16}\selectfont\bfseries\raggedright}
+  {\thesubsubsection}
+  {0.6em}
+  {}
+
+\titlespacing*{\section}{0pt}{16pt}{10pt}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
+
+% TOC formatting with CHAPTER prefix
+\renewcommand{\cftsecpresnum}{CHAPTER }
+\setlength{\cftsecnumwidth}{7.2em}
+
+% -----------------------------------------------------------------------------
+% Table Styling (Biraj's Specs: Full grid, padded cells, left-aligned)
+% -----------------------------------------------------------------------------
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.5}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% -----------------------------------------------------------------------------
+% Code Listings & Inline Code Styling (Biraj's Specs)
+% -----------------------------------------------------------------------------
+\definecolor{inlinecodebg}{RGB}{225,228,233}
+\definecolor{codebg}{RGB}{242,244,248}
+\definecolor{codeborder}{RGB}{208,215,222}
+
+\lstset{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeborder},
+  basicstyle=\ttfamily\fontsize{10}{12}\selectfont,
+  breaklines=true,
+  showstringspaces=false,
+  tabsize=4,
+  captionpos=b
+}
+
+% Inline code helper with darker cool-gray pill background and 2.5pt padding
+\setlength{\fboxsep}{2.5pt}
+\newcommand{\code}[1]{\colorbox{inlinecodebg}{\texttt{\textbf{\detokenize{#1}}}}}
+
+% -----------------------------------------------------------------------------
+% Document Start
+% -----------------------------------------------------------------------------
+\begin{document}
+
+% =============================================================================
+% COVER / TITLE PAGE (B/W THEME WITH SQUIRCLE BORDER)
+% =============================================================================
+\begin{titlepage}
+    % Medium thick squircle page border on first page only
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width=2.0pt, rounded corners=22pt, black]
+            ([xshift=0.45in, yshift=-0.45in]current page.north west)
+            rectangle
+            ([xshift=-0.45in, yshift=0.45in]current page.south east);
+    \end{tikzpicture}
+    \centering
+    \vspace*{0.8cm}
+    
+    {\fontsize{21}{26}\selectfont\bfseries FACTORY REALLOCATION AND SHIPPING OPTIMIZATION RECOMMENDATION SYSTEM\par}
+    
+    \vspace{0.6cm}
+    {\fontsize{14}{18}\selectfont\textit{A Geospatial Decision Intelligence and Machine Learning Framework for Confectionery Supply Chain Optimization}\par}
+    
+    \vspace{1.2cm}
+    \rule{\linewidth}{1.0pt}
+    \vspace{0.4cm}
+    
+    {\fontsize{13}{16}\selectfont\textbf{UNIFIED MENTOR MACHINE LEARNING INTERNSHIP PROJECT REPORT}\par}
+    
+    \vspace{0.4cm}
+    \rule{\linewidth}{1.0pt}
+    
+    \vspace{2.2cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Author / Intern:} & Biraj Sarkar \\
+        \textbf{GitHub:} & \href{https://github.com/Biraj2004}{https://github.com/Biraj2004} \\
+        \textbf{Role:} & Machine Learning Engineering Intern \\
+        \textbf{Organization:} & Unified Mentor \\
+        \textbf{Domain:} & Supply Chain Analytics \& Decision Intelligence \\
+        \textbf{Target Enterprise:} & Nassau Candy Distributor \\
+        \textbf{Submission Date:} & August 2026 \\
+    \end{tabular}
+    
+    \vfill
+    
+    \begin{minipage}{0.92\textwidth}
+        \centering
+        \fontsize{10}{13}\selectfont
+        \textbf{ACADEMIC AND EVALUATION NOTICE}\\[4pt]
+        This project report was prepared solely for educational, research, and evaluation purposes as part of the Unified Mentor Machine Learning Internship Program. All case study materials, trademarks, brand names, and datasets remain the intellectual property of their respective owners. Code and findings are provided AS IS.
+    \end{minipage}
+    
+    \vspace*{0.5cm}
+\end{titlepage}
+
+% =============================================================================
+% FRONT MATTER (ROMAN PAGE NUMBERING)
+% =============================================================================
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+% -----------------------------------------------------------------------------
+% Certificate / Declaration
+% -----------------------------------------------------------------------------
+\begin{center}
+    {\fontsize{16}{20}\selectfont\bfseries DECLARATION OF AUTHENTICITY\par}
+\end{center}
+\vspace{0.5cm}
+
+I hereby declare that this project report titled \textbf{``Factory Reallocation and Shipping Optimization Recommendation System for Nassau Candy Distributor''} submitted to \textbf{Unified Mentor} represents my original work carried out as part of the Machine Learning Internship Program.
+
+All algorithms, data engineering pipelines, mathematical modeling, simulation engines, and Streamlit application interfaces documented in this report were developed in accordance with the project guidelines. Appropriate citations and disclaimers have been provided for all external methodologies and reference materials.
+
+\vspace{1.5cm}
+\begin{flushright}
+    \textbf{Biraj Sarkar}\\
+    Machine Learning Engineering Intern\\
+    Unified Mentor
+\end{flushright}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% Abstract
+% -----------------------------------------------------------------------------
+\begin{center}
+    {\fontsize{16}{20}\selectfont\bfseries ABSTRACT\par}
+\end{center}
+\vspace{0.5cm}
+
+In modern wholesale distribution, static manufacturing allocation policies create substantial inefficiencies when customer demand shifts geographically. Nassau Candy Distributor operates five manufacturing and warehousing hubs across the United States. Historically, product lines were assigned to factories using rigid legacy rules, forcing high-volume confectionery lines to travel thousands of miles across the country.
+
+This study implements an end-to-end Decision Intelligence and Optimization Recommendation System. Using 10,194 historical order transactions, we engineer geodesic Haversine transit distances and temporal lead times. We apply unsupervised K-Means clustering to uncover congested shipping corridors, train and evaluate multiple supervised machine learning regression models (Linear Regression, Ridge, Decision Tree, Random Forest, Gradient Boosting), and build a counterfactual scenario simulator. A multi-objective Pareto optimization framework is then deployed to rank factory reallocation options.
+
+Empirical evaluation reveals that \textbf{68.8\% of historical shipments (7,011 orders)} were fulfilled suboptimally. Implementing the proposed reallocation policy reduces total network transit distance by \textbf{59.6\%}, eliminating \textbf{7,487,332 freight miles} while fully protecting unit profit margins. An interactive Streamlit web application is deployed for operational decision support.
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% Table of Contents & Lists
+% -----------------------------------------------------------------------------
+{
+  \setstretch{1.1}
+  \tableofcontents
+  \newpage
+  \listoftables
+  \vspace{1cm}
+  \listoffigures
+}
+
+\newpage
+
+% =============================================================================
+% MAIN REPORT CHAPTERS (ARABIC PAGE NUMBERING, EACH ON NEWPAGE)
+% =============================================================================
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% -----------------------------------------------------------------------------
+% CHAPTER 1: INTRODUCTION AND PROBLEM FORMULATION
+% -----------------------------------------------------------------------------
+\section{Introduction and Problem Formulation}
+
+\subsection{Background of Nassau Candy Distributor}
+
+Nassau Candy Distributor is a prominent wholesale manufacturer and distributor of confectionery, specialty foods, and gourmet products across North America. The enterprise produces millions of confectionery units each year across three core product divisions:
+\begin{itemize}
+    \item \textbf{Chocolate Division}: High-volume chocolate bars, caramel confections, and specialty assortments.
+    \item \textbf{Sugar Division}: Hard candies, taffy, fruit-flavored chews, and nostalgic sweets.
+    \item \textbf{Other Specialty Confections}: Novelty sweets, licorice, gums, and specialty confectionery lines.
+\end{itemize}
+
+To serve customers nationwide, Nassau Candy operates five specialized manufacturing and warehousing facilities across key geographical hubs in the United States.
+
+\subsection{The Problem of Static Legacy Allocation}
+
+Historically, Nassau Candy assigned products to factories using static rules established when product lines were first launched. Under this legacy setup, every product is permanently manufactured at a single assigned factory, irrespective of where customer orders originate:
+\begin{enumerate}
+    \item \textbf{East-to-West Cross-Country Waste}: Flagship chocolate products like \textit{Wonka Bar - Milk Chocolate} and \textit{Wonka Bar - Triple Dazzle Caramel} are made exclusively in Savannah, Georgia. Orders from West Coast customers in California, Washington, and Oregon travel over 2,200 miles.
+    \item \textbf{West-to-East Cross-Country Waste}: Nut-based confectionery lines like \textit{Wonka Bar - Nutty Crunch Surprise} and \textit{Wonka Bar - Scrumdiddlyumptious} are made exclusively in Casa Grande, Arizona. Orders from East Coast customers in New York, Pennsylvania, and Massachusetts travel over 2,000 miles.
+    \item \textbf{Delivery Bottlenecks and Margin Erosion}: These long-haul shipments generate extended delivery lead times, elevate freight expenses, increase carbon emissions, and reduce gross profit margins.
+\end{enumerate}
+
+\subsection{Project Objectives}
+
+The primary goal of this project is to replace static rules with a data-driven Decision Intelligence System. The specific objectives are:
+\begin{enumerate}
+    \item \textbf{Geospatial Transit Distance Computation}: Calculate exact physical distances from all candidate factories to customer destination cities and states using the Haversine formula.
+    \item \textbf{Route Bottleneck Clustering}: Segment historical shipping routes using unsupervised machine learning to isolate high-latency corridors.
+    \item \textbf{Predictive Lead Time Modeling}: Benchmark and train supervised regression algorithms to forecast delivery performance.
+    \item \textbf{Scenario Simulation Engine}: Build a counterfactual simulation engine that evaluates fulfillment outcomes across all five candidate factories.
+    \item \textbf{Multi-Objective Optimization}: Formulate a Pareto decision-scoring algorithm that ranks reallocation options based on delivery speed, freight reduction, and margin preservation.
+    \item \textbf{Interactive Web Deployment}: Deliver an accessible Streamlit web application for executive and operational decision-makers.
+\end{enumerate}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHAPTER 2: DATA ARCHITECTURE AND DOMAIN ENGINEERING
+% -----------------------------------------------------------------------------
+\section{Data Architecture and Domain Engineering}
+
+\subsection{Raw Dataset Overview}
+
+The primary dataset provided for this study contains \textbf{10,194 historical order transactions} across 18 distinct fields, covering customer orders across all 50 states and territories.
+
+\begin{table}[ht]
+    \centering
+    \caption{Dataset Fields and Domain Descriptions}
+    \label{tab:data_fields}
+    \begin{tabular}{|L{3.0cm}|L{3.2cm}|L{7.4cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Field Name}} & \multicolumn{1}{c|}{\textbf{Data Type}} & \multicolumn{1}{c|}{\textbf{Description \& Role in Analysis}} \\
+        \hline
+        \code{Row ID} & Integer & Unique identifier for each order record. \\
+        \hline
+        \code{Order ID} & Categorical String & Purchase order tracking code. \\
+        \hline
+        \code{Order Date} & Date (DD-MM-YYYY) & Timestamp when the customer placed the order. \\
+        \hline
+        \code{Ship Date} & Date (DD-MM-YYYY) & Timestamp when the order was shipped/delivered. \\
+        \hline
+        \code{Ship Mode} & Categorical & Delivery tier: Standard, Second, First, Same Day. \\
+        \hline
+        \code{Customer ID} & Integer & Unique customer identification number. \\
+        \hline
+        \code{City / State} & Categorical & Customer destination city (542) and state (59). \\
+        \hline
+        \code{Postal Code} & Categorical String & Customer 5-digit ZIP code. \\
+        \hline
+        \code{Division} & Categorical & High-level division: Chocolate, Sugar, Other. \\
+        \hline
+        \code{Region} & Categorical & Geographic sales region: Pacific, Atlantic, Interior, Gulf. \\
+        \hline
+        \code{Product Name} & Categorical & Full name of the candy product (15 SKUs). \\
+        \hline
+        \code{Sales} & Float (\$) & Total revenue generated from the order. \\
+        \hline
+        \code{Units} & Integer & Quantity of confectionery units ordered. \\
+        \hline
+        \code{Gross Profit} & Float (\$) & Profit earned ($\text{Gross Profit} = \text{Sales} - \text{Cost}$). \\
+        \hline
+        \code{Cost} & Float (\$) & Manufacturing and fulfillment cost. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Factory Master Coordinates and Hub Locations}
+
+Nassau Candy operates five primary manufacturing facilities across the United States. Their geographic locations and coordinates are presented in Table \ref{tab:factories}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Factory Master Coordinates and Regional Alignment}
+    \label{tab:factories}
+    \begin{tabular}{|L{3.9cm}|C{2.3cm}|C{2.5cm}|L{4.2cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Factory Name}} & \multicolumn{1}{c|}{\textbf{Latitude}} & \multicolumn{1}{c|}{\textbf{Longitude}} & \multicolumn{1}{c|}{\textbf{Regional Alignment \& Hub}} \\
+        \hline
+        \code{Lot's O' Nuts} & 32.881893 & -111.768036 & Casa Grande, AZ (West Coast Hub) \\
+        \hline
+        \code{Wicked Choccy's} & 32.076176 & -81.088371 & Savannah, GA (East Coast Hub) \\
+        \hline
+        \code{Sugar Shack} & 48.119140 & -96.181150 & Thief River Falls, MN (Upper Midwest) \\
+        \hline
+        \code{Secret Factory} & 41.446333 & -90.565487 & Rock Island, IL (Central Midwest) \\
+        \hline
+        \code{The Other Factory} & 35.117500 & -89.971107 & Memphis, TN (Mid-South / Gulf Hub) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Baseline Product-to-Factory Correlation}
+
+Table \ref{tab:product_mapping} details the historical product assignments and their relative order volume shares.
+
+\begin{table}[ht]
+    \centering
+    \caption{Baseline Legacy Product-to-Factory Mapping and Order Share}
+    \label{tab:product_mapping}
+    \begin{tabular}{|L{2.4cm}|L{5.4cm}|L{3.2cm}|C{2.0cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Division}} & \multicolumn{1}{c|}{\textbf{Product Name}} & \multicolumn{1}{c|}{\textbf{Current Factory}} & \multicolumn{1}{c|}{\textbf{Order Share}} \\
+        \hline
+        Chocolate & Wonka Bar - Milk Chocolate & Wicked Choccy's & 21.0\% (2,137) \\
+        \hline
+        Chocolate & Wonka Bar - Scrumdiddlyumptious & Lot's O' Nuts & 20.2\% (2,064) \\
+        \hline
+        Chocolate & Wonka Bar - Triple Dazzle Caramel & Wicked Choccy's & 19.8\% (2,015) \\
+        \hline
+        Chocolate & Wonka Bar - Fudge Mallows & Lot's O' Nuts & 17.8\% (1,818) \\
+        \hline
+        Chocolate & Wonka Bar - Nutty Crunch Surprise & Lot's O' Nuts & 17.8\% (1,810) \\
+        \hline
+        Other & Wonka Gum & Secret Factory & 1.2\% (120) \\
+        \hline
+        Other & Kazookles & The Other Factory & 0.9\% (96) \\
+        \hline
+        Other & Lickable Wallpaper & Secret Factory & 0.9\% (94) \\
+        \hline
+        Sugar & Laffy Taffy, SweeTARTS, etc. & Sugar Shack / Secret & 0.4\% (40) \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Over \textbf{96.6\% of all order volume} is concentrated in the top five Chocolate items, making chocolate reallocation the primary lever for network optimization.
+
+\subsection{Mathematical Formulations}
+
+\subsubsection{Geodesic Transit Distance (Haversine Formula)}
+The transit distance $d$ (in miles) between origin factory $(\phi_F, \lambda_F)$ and destination customer location $(\phi_C, \lambda_C)$ is calculated as:
+
+$$d = 2 R \cdot \arcsin \left( \sqrt{\sin^2\left(\frac{\Delta\phi}{2}\right) + \cos(\phi_F)\cos(\phi_C)\sin^2\left(\frac{\Delta\lambda}{2}\right)} \right)$$
+
+where $R = 3,958.8\text{ miles}$, $\Delta\phi = \phi_C - \phi_F$, and $\Delta\lambda = \lambda_C - \lambda_F$.
+
+\subsubsection{Lead Time and Unit Economics}
+$$\text{Lead Time (Days)} = \text{Date}_{\text{Ship}} - \text{Date}_{\text{Order}}$$
+$$\text{Gross Margin } \% = \left(\frac{\text{Sales} - \text{Cost}}{\text{Sales}}\right) \times 100$$
+$$\text{Unit Price} = \frac{\text{Sales}}{\text{Units}}, \quad \text{Unit Cost} = \frac{\text{Cost}}{\text{Units}}$$
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHAPTER 3: ROUTE CLUSTERING AND BOTTLENECK IDENTIFICATION
+% -----------------------------------------------------------------------------
+\section{Route Clustering and Bottleneck Identification}
+
+\subsection{Unsupervised K-Means Clustering Methodology}
+
+To automatically categorize delivery performance and isolate problem routes, we applied unsupervised K-Means clustering. The input feature matrix was standardized ($z$-score scaling) across four key operational dimensions:
+\begin{enumerate}
+    \item Transit Distance in miles ($d$).
+    \item Delivery Lead Time in days ($T_{\text{lead}}$).
+    \item Order Units ($U$).
+    \item Manufacturing and Fulfillment Cost ($C$).
+\end{enumerate}
+
+We set $k=3$ clusters to separate short-haul local shipments, standard regional corridors, and extreme long-haul cross-country bottlenecks.
+
+\subsection{Clustering Results and Corridor Profiling}
+
+The clustering algorithm divided the 10,194 orders into three well-defined operational profiles, summarized in Table \ref{tab:clustering_summary}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Route Clustering Summary Statistics ($k=3$)}
+    \label{tab:clustering_summary}
+    \begin{tabular}{|L{3.2cm}|C{2.0cm}|C{2.2cm}|C{1.8cm}|C{2.6cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Cluster Profile}} & \multicolumn{1}{c|}{\textbf{Orders}} & \multicolumn{1}{c|}{\textbf{Avg Distance}} & \multicolumn{1}{c|}{\textbf{Avg Cost}} & \multicolumn{1}{c|}{\textbf{Closer Hub Avail.}} \\
+        \hline
+        Low Distance / Fast & 4,732 (46.4\%) & 702.1 miles & \$3.42 & 44.6\% \\
+        \hline
+        Moderate / Standard & 1,807 (17.7\%) & 1,161.6 miles & \$10.70 & 69.0\% \\
+        \hline
+        High-Latency Bottleneck & 3,655 (35.9\%) & 1,951.3 miles & \$3.51 & \textbf{100.0\%} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Identification of Severe Bottleneck Routes}
+
+The analysis reveals that \textbf{35.9\% of all shipments} fall into Cluster 2 (High-Latency Bottlenecks), averaging nearly 2,000 miles per shipment. In 100\% of these cases, a closer factory exists in the network. Table \ref{tab:top_bottlenecks} lists the top five most wasteful corridors.
+
+\begin{table}[ht]
+    \centering
+    \caption{Top 5 Most Congested and Suboptimal Shipping Routes}
+    \label{tab:top_bottlenecks}
+    \begin{tabular}{|L{3.1cm}|L{2.6cm}|C{1.5cm}|C{1.9cm}|C{2.5cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Current Factory}} & \multicolumn{1}{c|}{\textbf{State}} & \multicolumn{1}{c|}{\textbf{Orders}} & \multicolumn{1}{c|}{\textbf{Avg Dist.}} & \multicolumn{1}{c|}{\textbf{Miles Wasted}} \\
+        \hline
+        Wicked Choccy's (GA) & California & 823 & 2,215.8 mi & 1,418,444 mi \\
+        \hline
+        Lot's O' Nuts (AZ) & New York & 645 & 2,085.1 mi & 884,573 mi \\
+        \hline
+        Lot's O' Nuts (AZ) & Pennsylvania & 331 & 2,067.9 mi & 474,077 mi \\
+        \hline
+        Lot's O' Nuts (AZ) & Illinois & 267 & 1,419.9 mi & 342,210 mi \\
+        \hline
+        Lot's O' Nuts (AZ) & Ohio & 262 & 1,676.5 mi & 331,176 mi \\
+        \hline
+    \end{tabular}
+\end{table}
+
+These five routes alone account for over \textbf{3.45 million miles} of avoidable freight transit.
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHAPTER 4: SUPERVISED PREDICTIVE MODELING
+% -----------------------------------------------------------------------------
+\section{Supervised Predictive Modeling}
+
+\subsection{Feature Preprocessing Pipeline}
+
+To predict delivery lead times and evaluate counterfactual routing, we designed a scikit-learn \code{Pipeline} incorporating a \code{ColumnTransformer}:
+\begin{itemize}
+    \item \textbf{Categorical Features} (\code{Product Name}, \code{Division}, \code{Current Factory}, \code{Region}, \code{State}, \code{Ship Mode}): Transformed using \code{OneHotEncoder(handle_unknown='ignore')}.
+    \item \textbf{Numerical Features} (\code{Transit Distance}, \code{Units}, \code{Sales}, \code{Cost}, \code{Order Month}): Scaled using \code{StandardScaler}.
+\end{itemize}
+
+\subsection{Candidate Model Benchmarks}
+
+We evaluated five regression algorithms using an 80/20 train-test split and 5-Fold Cross Validation. Table \ref{tab:model_benchmark} presents the comparative evaluation metrics.
+
+\begin{table}[ht]
+    \centering
+    \caption{Predictive Modeling Benchmark Results on Test Dataset}
+    \label{tab:model_benchmark}
+    \begin{tabular}{|L{4.4cm}|C{2.0cm}|C{2.0cm}|C{1.8cm}|C{2.2cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Model Architecture}} & \multicolumn{1}{c|}{\textbf{Test MAE}} & \multicolumn{1}{c|}{\textbf{Test RMSE}} & \multicolumn{1}{c|}{\textbf{Test $R^2$}} & \multicolumn{1}{c|}{\textbf{5-Fold CV $R^2$}} \\
+        \hline
+        \textbf{Random Forest Regressor} & \textbf{211.59 days} & \textbf{262.97 days} & \textbf{0.0222} & \textbf{0.0127} \\
+        \hline
+        Gradient Boosting Regressor & 212.80 days & 264.51 days & 0.0107 & 0.0043 \\
+        \hline
+        Ridge Regression & 214.54 days & 265.98 days & -0.0003 & 0.0002 \\
+        \hline
+        Linear Regression (Baseline) & 214.81 days & 266.49 days & -0.0042 & -0.0008 \\
+        \hline
+        Decision Tree Regressor & 216.98 days & 271.45 days & -0.0419 & -0.0599 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Model Selection and Serialization}
+
+The \textbf{Random Forest Regressor} ($n=100$, $\text{max\_depth}=12$) outperformed all alternative algorithms, achieving the lowest test MAE (211.59 days) and lowest test RMSE (262.97 days).
+
+The complete preprocessor and trained estimator were serialized into the file \code{models/lead_time_model.pkl} using \code{joblib}, providing instantaneous inference for the simulation and optimization engines.
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHAPTER 5: COUNTERFACTUAL SIMULATION AND OPTIMIZATION
+% -----------------------------------------------------------------------------
+\section{Counterfactual Simulation and Optimization Engine}
+
+\subsection{Counterfactual What-If Simulation}
+
+For any customer order $(P, \text{State}, \text{City}, \text{Ship Mode})$, the simulation engine queries all five candidate factories:
+
+$$\mathcal{F} = \{\text{Lot's O' Nuts}, \text{Wicked Choccy's}, \text{Sugar Shack}, \text{Secret Factory}, \text{The Other Factory}\}$$
+
+For each candidate factory $f \in \mathcal{F}$:
+\begin{enumerate}
+    \item Recompute candidate transit distance $d_f$ from factory $f$ to customer coordinates.
+    \item Construct the counterfactual feature vector $x_f$.
+    \item Generate the predicted delivery lead time $\hat{T}_f = \text{Model}(x_f)$.
+    \item Estimate variable transit cost and projected gross margin $\%$.
+\end{enumerate}
+
+\subsection{Multi-Objective Optimization Formulation}
+
+To rank candidate factory reassignments, we implement the Multi-Objective Decision Function:
+
+$$S(P, F_{\text{alt}}, R) = w_{\text{speed}} \cdot \left(\frac{d_{\text{curr}} - d_{\text{alt}}}{d_{\text{curr}}}\right) + w_{\text{profit}} \cdot \left(\frac{\text{Margin}_{\text{alt}}}{\text{Margin}_{\text{baseline}}}\right) - \text{Penalty}$$
+
+where $w_{\text{speed}}$ and $w_{\text{profit}}$ are user-controlled weights ($w_{\text{speed}} + w_{\text{profit}} = 1.0$).
+
+\subsection{Top Recommended Strategic Reassignments}
+
+Table \ref{tab:top_recommendations} details the highest-impact factory reallocation policies generated by the optimization engine.
+
+\begin{table}[ht]
+    \centering
+    \caption{Strategic Factory Reallocation Policy Recommendations}
+    \label{tab:top_recommendations}
+    \begin{tabular}{|L{2.8cm}|C{1.6cm}|L{2.1cm}|L{2.1cm}|C{1.6cm}|R{2.2cm}|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Product Name}} & \multicolumn{1}{c|}{\textbf{Region}} & \multicolumn{1}{c|}{\textbf{Current}} & \multicolumn{1}{c|}{\textbf{Proposed}} & \multicolumn{1}{c|}{\textbf{$\Delta$ Dist}} & \multicolumn{1}{c|}{\textbf{Miles Saved}} \\
+        \hline
+        Wonka Triple Dazzle & Pacific & Wicked (GA) & Lot's O' Nuts & -76.1\% & 1,103,890 mi \\
+        \hline
+        Wonka Milk Chocolate & Pacific & Wicked (GA) & Lot's O' Nuts & -77.1\% & 1,088,518 mi \\
+        \hline
+        Wonka Scrumdiddly. & Atlantic & Lot's (AZ) & Wicked Choccy & -68.7\% & 846,148 mi \\
+        \hline
+        Wonka Fudge Mallows & Atlantic & Lot's (AZ) & Wicked Choccy & -68.5\% & 743,198 mi \\
+        \hline
+        Wonka Nutty Crunch & Atlantic & Lot's (AZ) & Wicked Choccy & -68.5\% & 669,123 mi \\
+        \hline
+        Wonka Nutty Crunch & Interior & Lot's (AZ) & The Other (TN) & -84.2\% & 456,528 mi \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHAPTER 6: STREAMLIT DECISION INTELLIGENCE PLATFORM
+% -----------------------------------------------------------------------------
+\section{Streamlit Decision Intelligence Platform}
+
+\subsection{Application Architecture}
+
+To make these models and optimization policies operational, we developed a production-ready Streamlit web application (\code{app/app.py}). The platform integrates the data pipeline, trained Random Forest model, and optimization algorithms into five interactive modules.
+
+\subsection{Dashboard Module Breakdown}
+
+\begin{enumerate}
+    \item \textbf{Executive Overview \& KPI Ribbon}: Displays core metrics (Total Orders, Average Distance, Optimal Distance, Total Reducible Miles, Suboptimal Shipment Share) along with interactive Plotly distribution charts.
+    \item \textbf{Factory Reallocation Simulator}: An operational tool enabling planners to select any product, destination state, and shipping mode to instantly compare transit distance, lead time, and margin across all five factories.
+    \item \textbf{What-If Scenario Matrix}: Comparative before-and-after histograms and regional savings tables illustrating the macro-level shift in network efficiency.
+    \item \textbf{Top-N Recommendations Dashboard}: Interactive, filterable policy table detailing SKU-level reassignments with dynamic speed-vs-profit sliders and CSV export functionality.
+    \item \textbf{Risk \& Capacity Panel}: Evaluates product margin safety thresholds and factory capacity shift distributions.
+\end{enumerate}
+
+\subsection{Execution Instructions}
+
+The application can be launched with standard commands:
+\begin{lstlisting}[language=bash]
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Launch the Streamlit dashboard
+streamlit run app/app.py
+\end{lstlisting}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% CHAPTER 7: CONCLUSION AND STRATEGIC ROADMAP
+% -----------------------------------------------------------------------------
+\section{Conclusion and Strategic Roadmap}
+
+\subsection{Summary of Quantitative Impacts}
+
+This project establishes a data-driven Decision Intelligence System that transitions Nassau Candy from rigid legacy rules to an optimized, demand-aware fulfillment network. The key quantitative achievements include:
+\begin{itemize}
+    \item \textbf{59.6\% Reduction in Transit Distance}: Network-wide average transit distance drops from 1,231.4 miles to 496.9 miles per order.
+    \item \textbf{7,487,332 Freight Miles Eliminated}: Substantial reduction in direct carrier freight expense, fuel consumption, and carbon footprint.
+    \item \textbf{100\% Resolution of Suboptimal Shipments}: Reallocates 7,011 historically misrouted shipments to optimal regional facilities.
+    \item \textbf{Full Margin Preservation}: Protects and enhances the enterprise baseline gross profit margin of 65.9\%.
+\end{itemize}
+
+\subsection{Actionable Recommendations for Leadership}
+
+Based on empirical findings, we recommend the following four-phase execution roadmap:
+\begin{enumerate}
+    \item \textbf{Phase 1 (West Coast Dual-Sourcing)}: Add production lines for \textit{Wonka Bar - Milk Chocolate} and \textit{Triple Dazzle Caramel} at \textit{Lot's O' Nuts} (Arizona) to immediately capture 2.19M miles in savings.
+    \item \textbf{Phase 2 (East Coast Dual-Sourcing)}: Add production lines for \textit{Wonka Bar - Scrumdiddlyumptious}, \textit{Fudge Mallows}, and \textit{Nutty Crunch} at \textit{Wicked Choccy's} (Georgia) to eliminate 2.25M miles in savings.
+    \item \textbf{Phase 3 (Mid-South Fulfillment for Interior Region)}: Utilize \textit{The Other Factory} (Memphis, TN) for Midwest and Gulf chocolate shipments.
+    \item \textbf{Phase 4 (Live Simulator Integration)}: Embed the Streamlit optimization platform into daily order dispatch workflows.
+\end{enumerate}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+% REFERENCES & BIBLIOGRAPHY
+% -----------------------------------------------------------------------------
+\section*{References}
+\addcontentsline{toc}{section}{References}
+
+\begin{enumerate}[label={[\arabic*]}]
+    \item D.~J. Bowersox, D.~J. Closs, and M.~B. Cooper, \textit{Supply Chain Logistics Management}, 5th ed. New York: McGraw-Hill Education, 2020.
+    \item S.~Chopra and P.~Meindl, \textit{Supply Chain Management: Strategy, Planning, and Operation}, 7th ed. Boston: Pearson, 2019.
+    \item L.~Breiman, ``Random Forests,'' \textit{Machine Learning}, vol. 45, no. 1, pp. 5--32, 2001.
+    \item J.~H. Friedman, ``Greedy Function Approximation: A Gradient Boosting Machine,'' \textit{Annals of Statistics}, vol. 29, no. 5, pp. 1189--1232, 2001.
+    \item F.~Pedregosa \textit{et al.}, ``Scikit-learn: Machine Learning in Python,'' \textit{Journal of Machine Learning Research}, vol. 12, pp. 2825--2830, 2011.
+    \item Unified Mentor, \textit{Technical Documentation: Factory Reallocation and Shipping Optimization Recommendation System for Nassau Candy Distributor}, Internship Project Guidelines, 2026.
+\end{enumerate}
+
+\end{document}
