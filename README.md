@@ -52,45 +52,51 @@ This project delivers a **Machine Learning and Decision Intelligence Recommendat
 
 ```
 UM-Project/
-├── main.py                                  # Master entry point (runs full pipeline chainwise)
-├── docs/                                    # Raw data and project instructions
-│   ├── Dataset - Nassau Candy Distributor.csv # Historical transactional dataset (10,194 rows)
-│   ├── PROJECT_INSTRUCTION.md               # Clean Markdown project specifications
-│   └── project-instruction.htm              # Original Unified Mentor HTML instruction snapshot
-├── data/                                    # Processed datasets
+├── .streamlit/                                  # Streamlit theme & server configuration
+│   └── config.toml                              # Dark theme tokens & production settings
+├── app/                                         # Production Streamlit Web Dashboard
+│   └── app.py                                   # 5-module interactive dashboard
+├── assets/                                      # Static visual branding & preview assets
+│   ├── favicon.png                              # Streamlit dashboard favicon
+│   └── og_preview.png                           # OpenGraph preview banner
+├── data/                                        # Raw and processed datasets
+│   ├── raw/
+│   │   └── Dataset - Nassau Candy Distributor.csv # Historical transactional dataset (10,194 rows)
 │   └── processed/
-│       ├── nassau_candy_enriched.csv        # Enriched with Haversine distances & economics
-│       ├── nassau_candy_clustered.csv       # K-Means route clustering labels
-│       ├── model_benchmark_results.csv      # Regression algorithm benchmark results
-│       └── top_recommendations.csv          # Ranked factory reallocation policies
-├── src/                                     # Clean, maintainable Python source modules
-│   ├── __init__.py
-│   ├── geo_utils.py                         # Factory coordinates & Haversine distance engine
-│   ├── data_pipeline.py                     # Data loader, date parsing, distance calculator
-│   ├── clustering.py                        # Unsupervised route bottleneck clustering (K-Means)
-│   ├── model_engine.py                      # Supervised ML training & serialization (Random Forest)
-│   ├── simulation_engine.py                 # Real-time counterfactual 5-factory simulator
-│   └── optimization_engine.py               # Multi-objective Pareto scoring & policy table
-├── models/                                  # Serialized trained model pipelines
-│   └── lead_time_model.pkl                  # Trained Random Forest regression pipeline
-├── notebooks/                               # Step-by-step Jupyter Notebooks
-│   ├── 01_data_cleaning_and_eda.ipynb       # Exploratory Data Analysis & geospatial mapping
-│   ├── 02_clustering_and_bottlenecks.ipynb  # Route clustering & bottleneck profiling
-│   └── 03_machine_learning_models.ipynb     # Model training, validation, and benchmarking
-├── app/                                     # Production Streamlit Web Dashboard
-│   └── app.py                               # 5-module interactive dashboard
-├── .streamlit/                              # Streamlit theme & server configuration
-│   └── config.toml                          # Dark theme tokens & production settings
-├── reports/                                 # Final academic reports & deliverables
-│   ├── PROJECT_REPORT.tex                   # XeLaTeX source code (B/W theme, 18 pages)
-│   ├── PROJECT_REPORT.pdf                   # Compiled PDF report with squircle cover border
-│   ├── RESEARCH_PAPER.md                    # In-depth academic research report
-│   └── EXECUTIVE_SUMMARY.md                 # Executive presentation summary
-├── UM_PROJECT_GENERAL_GUIDE.md              # Universal Unified Mentor ML internship general guide
-├── UNDERSTAND_PROJECT.md                    # Master technical guide & architectural blueprint
-├── README.md                                # Top-level repository overview
-├── LICENSE                                  # MIT License with liability protection
-└── requirements.txt                         # Python dependencies
+│       ├── model_benchmark_results.csv          # 5-Model regression benchmark results
+│       ├── nassau_candy_clustered.csv           # K-Means route clustering labels & profiles
+│       ├── nassau_candy_enriched.csv            # Enriched with Haversine geodesic distances & economics
+│       └── top_recommendations.csv              # Ranked multi-objective factory reallocation policies
+├── docs/                                        # Project requirements, specifications & technical guides
+│   ├── biraj-xelatex-general-specs.md           # XeLaTeX report formatting specifications
+│   ├── PROJECT_INSTRUCTION.md                   # Clean Markdown project specifications & dataset schema
+│   ├── project-instruction.htm                  # Original Unified Mentor HTML instruction snapshot
+│   ├── UM_PROJECT_GENERAL_GUIDE.md              # Universal Unified Mentor ML internship general guide
+│   └── UNDERSTAND_PROJECT.md                    # Master technical guide & architectural blueprint
+├── models/                                      # Serialized trained model pipelines
+│   └── lead_time_model.pkl                      # Trained Random Forest regression pipeline (~5.3 MB)
+├── notebooks/                                   # Step-by-step Jupyter Notebooks
+│   ├── 01_data_cleaning_and_eda.ipynb           # Exploratory Data Analysis & geospatial mapping
+│   ├── 02_clustering_and_bottlenecks.ipynb      # Route clustering, elbow curve & bottleneck profiling
+│   └── 03_machine_learning_models.ipynb         # Supervised ML model training, benchmarking & validation
+├── reports/                                     # Final academic reports & deliverables
+│   ├── EXECUTIVE_SUMMARY.md                     # Executive presentation summary for stakeholders
+│   ├── PROJECT_REPORT.pdf                       # Compiled 18-page formal XeLaTeX project report
+│   ├── PROJECT_REPORT.tex                       # XeLaTeX source document (clean black/white theme)
+│   └── RESEARCH_PAPER.md                        # Comprehensive academic research paper
+├── src/                                         # Modular Python source codebase
+│   ├── __init__.py                              # Python package marker
+│   ├── clustering.py                            # Unsupervised route bottleneck clustering (K-Means, k=3)
+│   ├── data_pipeline.py                         # Data ingestion, cleaning & Haversine distance engine
+│   ├── geo_utils.py                             # Factory coordinates & Haversine geodesic calculator
+│   ├── model_engine.py                          # Supervised ML training, benchmarking & serialization
+│   ├── optimization_engine.py                   # Multi-objective Pareto scoring & policy table generator
+│   └── simulation_engine.py                     # Real-time counterfactual 5-factory simulator
+├── .gitignore                                   # Git ignore rules
+├── LICENSE                                      # MIT License with educational disclaimer
+├── main.py                                      # Master CLI orchestrator (runs full pipeline chainwise)
+├── README.md                                    # Top-level repository overview & documentation
+└── requirements.txt                             # Production Python dependencies
 ```
 
 ---
@@ -278,13 +284,16 @@ cd ..
 
 ## Documentation & Report Links
 
-* **[UM_PROJECT_GENERAL_GUIDE.md](file:///c:/Users/biraj/Desktop/UM-Project/UM_PROJECT_GENERAL_GUIDE.md)** — Universal Unified Mentor ML internship general blueprint & deployment guide.
-* **[PROJECT_REPORT.pdf](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.pdf)** — Full 18-page compiled XeLaTeX project report.
-* **[PROJECT_REPORT.tex](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.tex)** — XeLaTeX source document.
-* **[RESEARCH_PAPER.md](file:///c:/Users/biraj/Desktop/UM-Project/reports/RESEARCH_PAPER.md)** — Academic research paper.
-* **[EXECUTIVE_SUMMARY.md](file:///c:/Users/biraj/Desktop/UM-Project/reports/EXECUTIVE_SUMMARY.md)** — Presentation summary for leadership and evaluators.
-* **[UNDERSTAND_PROJECT.md](file:///c:/Users/biraj/Desktop/UM-Project/UNDERSTAND_PROJECT.md)** — Master technical guide and architectural blueprint.
+* **[docs/UNDERSTAND_PROJECT.md](file:///c:/Users/biraj/Desktop/UM-Project/docs/UNDERSTAND_PROJECT.md)** — Master technical guide and architectural blueprint.
+* **[docs/UM_PROJECT_GENERAL_GUIDE.md](file:///c:/Users/biraj/Desktop/UM-Project/docs/UM_PROJECT_GENERAL_GUIDE.md)** — Universal Unified Mentor ML internship general blueprint & deployment guide.
 * **[docs/PROJECT_INSTRUCTION.md](file:///c:/Users/biraj/Desktop/UM-Project/docs/PROJECT_INSTRUCTION.md)** — Original project requirements and dataset dictionary.
+* **[docs/biraj-xelatex-general-specs.md](file:///c:/Users/biraj/Desktop/UM-Project/docs/biraj-xelatex-general-specs.md)** — XeLaTeX styling, formatting guidelines and typesetting specifications.
+* **[reports/PROJECT_REPORT.pdf](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.pdf)** — Full 18-page compiled XeLaTeX project report.
+* **[reports/PROJECT_REPORT.tex](file:///c:/Users/biraj/Desktop/UM-Project/reports/PROJECT_REPORT.tex)** — XeLaTeX source document.
+* **[reports/RESEARCH_PAPER.md](file:///c:/Users/biraj/Desktop/UM-Project/reports/RESEARCH_PAPER.md)** — Comprehensive academic research paper.
+* **[reports/EXECUTIVE_SUMMARY.md](file:///c:/Users/biraj/Desktop/UM-Project/reports/EXECUTIVE_SUMMARY.md)** — Executive presentation summary for leadership and evaluators.
+* **[LICENSE](file:///c:/Users/biraj/Desktop/UM-Project/LICENSE)** — MIT License with academic disclaimer.
+* **[requirements.txt](file:///c:/Users/biraj/Desktop/UM-Project/requirements.txt)** — Production dependencies.
 
 ---
 
